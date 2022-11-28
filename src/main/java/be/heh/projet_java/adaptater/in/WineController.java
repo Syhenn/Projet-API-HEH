@@ -27,9 +27,9 @@ public class WineController {
         return wineServicePort.getWineById(id);
     }
 
-    @PutMapping()
-    public Wine updateWine(@RequestBody Wine wine) {
-        return wineServicePort.updateWine(wine);
+    @PutMapping("/update/{id}")
+    public Wine updateWine(@PathVariable Long id ,@RequestBody Wine wine) {
+        return wineServicePort.updateWine(id, wine);
     }
     @PostMapping
     public Wine addWine(@RequestBody Wine wine) {

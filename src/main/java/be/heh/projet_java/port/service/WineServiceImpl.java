@@ -25,8 +25,8 @@ public class WineServiceImpl implements WineServicePort {
     }
 
     @Override
-    public Wine updateWine(Wine wine) {
-        return  winePersistencePort.updateWine(wine);
+    public Wine updateWine(Long id,Wine wine) {
+        return  winePersistencePort.updateWine(id, wine);
     }
 
     @Override

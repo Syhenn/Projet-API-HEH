@@ -24,7 +24,7 @@ public class BeerController {
   }
 
   @PutMapping("/update/{id}")
-  public Beer updateBeer(@PathVariable long id,@RequestBody Beer beer) {
+  public Beer updateBeer(@PathVariable Long id,@RequestBody Beer beer) {
 
     return beerServicePort.updateBeer(id, beer);
   }
