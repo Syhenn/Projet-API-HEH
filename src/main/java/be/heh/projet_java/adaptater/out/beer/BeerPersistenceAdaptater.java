@@ -1,6 +1,9 @@
 package be.heh.projet_java.adaptater.out.beer;
 
+import be.heh.projet_java.adaptater.out.store.StoreJpaEntity;
+import be.heh.projet_java.adaptater.out.store.StoreMapper;
 import be.heh.projet_java.model.Beer;
+import be.heh.projet_java.model.Store;
 import be.heh.projet_java.port.out.BeerPersistencePort;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -25,8 +28,25 @@ public class BeerPersistenceAdaptater implements BeerPersistencePort {
     }
 
     @Override
-    public Beer updateBeer(Beer beer) {
-        return addBeer(beer);
+    public Beer updateBeer(Long id, Beer beer) {
+
+        Optional<BeerJpaEntity> beerJpa = beerRepository.findById(id);
+
+        if (beerJpa.isPresent()) {
+            Beer beer_by_id = BeerMapper.INSTANCE.beerToBeerModel(beerJpa.get());
+            BeerJpaEntity beerJpaEntity = BeerMapper.INSTANCE.beerToBeerJpaEntity(beer);
+            beerJpaEntity.setId(id);
+            if (beer_by_id.getNameBeer() != beerJpaEntity.getNameBeer()) {
+                beerJpaEntity.setNameBeer(beer.getNameBeer());
+            } else if (beer_by_id.getDegrees() != beerJpaEntity.getDegrees()) {
+                beerJpaEntity.setDegrees(beer.getDegrees());
+            } else if (beer_by_id.getUrl() != beerJpaEntity.getUrl()) {
+                beerJpaEntity.setUrl(beer.getUrl());
+            }
+            BeerJpaEntity beerSaved = beerRepository.save(beerJpaEntity);
+            return BeerMapper.INSTANCE.beerToBeerModel(beerSaved);
+        }
+        return null;
     }
 
     @Override

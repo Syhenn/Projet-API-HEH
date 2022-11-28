@@ -8,7 +8,7 @@ import be.heh.projet_java.model.Beer;
 public interface BeerPersistencePort {
     Beer addBeer(Beer beer);
     void deleteBeerById(Long id);
-    Beer updateBeer(Beer beer);
+    Beer updateBeer(Long id,Beer beer);
     List<Beer> getBeers();
     Beer getBeerById(Long beer);
 }

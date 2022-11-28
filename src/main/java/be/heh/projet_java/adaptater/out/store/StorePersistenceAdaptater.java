@@ -24,9 +24,25 @@ public class StorePersistenceAdaptater implements StorePersistencePort {
     public void deleteStoreById(Long id) {
         storeRepository.deleteById(id);
     }
+
     @Override
-    public Store updateStore(Store store) {
-        return addStore(store);
+    public Store updateStore(Long id, Store store) {
+        Optional<StoreJpaEntity> storeJpa = storeRepository.findById(id);
+
+        if(storeJpa.isPresent()){
+            Store store_by_id = StoreMapper.INSTANCE.storeJpaToStore(storeJpa.get());
+            StoreJpaEntity storeJpaEntity = StoreMapper.INSTANCE.storeToStoreJpa(store);
+            storeJpaEntity.setId(id);
+            if(store_by_id.getAddress() != storeJpaEntity.getAddress()){
+                storeJpaEntity.setAddress(store.getAddress());
+            }else if(store_by_id.getName() != storeJpaEntity.getName()){
+                storeJpaEntity.setName(store.getName());
+            }
+            StoreJpaEntity storeSaved = storeRepository.save(storeJpaEntity);
+            return StoreMapper.INSTANCE.storeJpaToStore(storeSaved);
+        }
+
+        return null;
     }
 
     @Override

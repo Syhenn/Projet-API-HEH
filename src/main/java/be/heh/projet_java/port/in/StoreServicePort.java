@@ -9,7 +9,7 @@ public interface StoreServicePort {
 
     void deleteStoreById(Long id);
 
-    Store updateStore(Store store);
+    Store updateStore(Long id, Store store);
 
     List<Store> getStores();
 

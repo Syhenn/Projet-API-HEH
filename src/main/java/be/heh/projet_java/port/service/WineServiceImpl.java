@@ -10,6 +10,7 @@ public class WineServiceImpl implements WineServicePort {
     private WinePersistencePort winePersistencePort;
 
     public WineServiceImpl(WinePersistencePort winePersistencePort) {
+
         this.winePersistencePort = winePersistencePort;
     }
 
@@ -30,6 +31,7 @@ public class WineServiceImpl implements WineServicePort {
 
     @Override
     public List<Wine> getWines() {
+
         return winePersistencePort.getWines();
     }
 

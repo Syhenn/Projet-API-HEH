@@ -31,7 +31,7 @@ public class WinePersistenceAdaptater implements WinePersistencePort {
     @Override
     public List<Wine> getWines() {
         List<WineJpaEntity> wineJpaEntityList = wineRepository.findAll();
-
+        System.out.println(wineRepository.findAll());
         return WineMapper.INSTANCE.wineJpaEntityListToWineList(wineJpaEntityList);
     }
 

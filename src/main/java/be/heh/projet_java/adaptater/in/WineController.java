@@ -17,7 +17,8 @@ public class WineController {
     private WineServicePort wineServicePort;
 
     @GetMapping
-    public List<Wine> getAllBooks() {
+    public List<Wine> getAllWine() {
+
         return wineServicePort.getWines();
     }
 

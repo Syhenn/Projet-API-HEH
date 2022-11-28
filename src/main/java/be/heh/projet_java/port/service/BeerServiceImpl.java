@@ -25,8 +25,8 @@ public class BeerServiceImpl implements BeerServicePort {
     }
 
     @Override
-    public Beer updateBeer(Beer beer) {
-        return beerPersistencePort.updateBeer(beer);
+    public Beer updateBeer(Long id,Beer beer) {
+        return beerPersistencePort.updateBeer(id, beer);
     }
 
     @Override

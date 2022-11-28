@@ -1,20 +1,17 @@
 package be.heh.projet_java.model;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@RequiredArgsConstructor
+@Data
+@AllArgsConstructor
+@Builder
 public class Wine {
-    @Getter
-    @Setter
+
+    private Long id;
+
     private final String nameWine;
 
-    @Getter
-    @Setter
     private final String url;
 
-    @Getter
-    @Setter
     private final float degrees;
 }

@@ -23,13 +23,14 @@ public class BeerController {
     return beerServicePort.getBeerById(id);
   }
 
-  @PutMapping()
-  public Beer updateBeer(@RequestBody Beer beer) {
-    return beerServicePort.updateBeer(beer);
+  @PutMapping("/update/{id}")
+  public Beer updateBeer(@PathVariable long id,@RequestBody Beer beer) {
+
+    return beerServicePort.updateBeer(id, beer);
   }
 
   @GetMapping
-  public List<Beer> getAllBooks() {
+  public List<Beer> getAllBeer() {
     return beerServicePort.getBeers();
   }
 

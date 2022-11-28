@@ -24,8 +24,8 @@ public class StoreServiceImpl implements StoreServicePort {
     }
 
     @Override
-    public Store updateStore(Store store){
-        return storePersistencePort.updateStore(store);
+    public Store updateStore(Long id, Store store){
+        return storePersistencePort.updateStore(id, store);
     }
 
     @Override

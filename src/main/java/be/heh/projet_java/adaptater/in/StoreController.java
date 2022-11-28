@@ -17,26 +17,26 @@ public class StoreController {
     @Autowired
     private StoreServicePort storeServicePort;
 
-    @PostMapping("/add")
+    @PostMapping()
     public Store addStore(@RequestBody Store store){
         return storeServicePort.addStore(store);
     }
     @GetMapping()
-    public List<Store> getAllstore() {
-        //return "storeList";
-        System.out.println(storeServicePort.getStores());
+    public List<Store> getAllStore() {
         return storeServicePort.getStores();
     }
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     public Store getStoreById(@PathVariable long id){
         return storeServicePort.getStoreById(id);
     }
+
     @PutMapping("/update/{id}")
-    public Store updateStore(@RequestBody Store store) {
-        return storeServicePort.updateStore(store);
+    public Store updateStore(@PathVariable long id, @RequestBody Store store) {
+
+        return storeServicePort.updateStore(id, store);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public void deleteStoreById(@PathVariable long id){
         storeServicePort.deleteStoreById(id);
     }

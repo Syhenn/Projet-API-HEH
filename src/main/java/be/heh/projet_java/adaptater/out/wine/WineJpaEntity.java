@@ -15,16 +15,16 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class WineJpaEntity {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "nameWine")
-    private String nameBeer;
+    @Column(name = "namewine")
+    private String nameWine;
 
     @Column(name = "url")
     private String url;
 
     @Column(name = "degrees")
-    private Float degrees;
+    private float degrees;
 }

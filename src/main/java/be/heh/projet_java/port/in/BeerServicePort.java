@@ -7,7 +7,7 @@ import java.util.List;
 public interface BeerServicePort {
   Beer addBeer(Beer beer);
   void deleteBeerById(Long id);
-  Beer updateBeer(Beer beer);
+  Beer updateBeer(Long id,Beer beer);
   List<Beer> getBeers();
   Beer getBeerById(Long beer);
 
