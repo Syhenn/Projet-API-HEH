@@ -21,7 +21,7 @@ public class StoreController {
     public Store addStore(@RequestBody Store store){
         return storeServicePort.addStore(store);
     }
-    @GetMapping("/get")
+    @GetMapping()
     public List<Store> getAllstore() {
         //return "storeList";
         System.out.println(storeServicePort.getStores());

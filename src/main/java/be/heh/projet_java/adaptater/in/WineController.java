@@ -3,12 +3,14 @@ package be.heh.projet_java.adaptater.in;
 
 import be.heh.projet_java.model.Wine;
 import be.heh.projet_java.port.in.WineServicePort;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/wine")
 public class WineController {
     @Autowired
