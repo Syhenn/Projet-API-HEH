@@ -1,0 +1,1 @@
+ java -Dspring.profiles.active=prod -server.port=$JAVA $JAVA_OPTS -jar ~/build/libs/projet_Java-0.0.1-SNAPSHOT.jar
