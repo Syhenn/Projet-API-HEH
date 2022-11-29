@@ -30,9 +30,9 @@ public class WineServiceImpl implements WineServicePort {
     }
 
     @Override
-    public List<Wine> getWines() {
+    public List<Wine> getWines(int limit) {
 
-        return winePersistencePort.getWines();
+        return winePersistencePort.getWines(limit);
     }
 
     @Override

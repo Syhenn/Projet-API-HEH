@@ -3,10 +3,16 @@ package be.heh.projet_java.adaptater.out.wine;
 
 import be.heh.projet_java.adaptater.out.beer.BeerJpaEntity;
 import be.heh.projet_java.adaptater.out.beer.BeerMapper;
+import be.heh.projet_java.adaptater.out.store.StoreJpaEntity;
+import be.heh.projet_java.adaptater.out.store.StoreMapper;
 import be.heh.projet_java.model.Beer;
 import be.heh.projet_java.model.Wine;
 import be.heh.projet_java.port.out.WinePersistencePort;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,8 +40,8 @@ public class WinePersistenceAdaptater implements WinePersistencePort {
             Wine wine_by_id = WineMapper.INSTANCE.wineToWineModel(wineJpa.get());
             WineJpaEntity wineJpaEntity = WineMapper.INSTANCE.wineToWineJpaEntity(wine);
             wineJpaEntity.setId(id);
-            if (wine_by_id.getNameWine() != wineJpaEntity.getNameWine()) {
-                wineJpaEntity.setNameWine(wine.getNameWine());
+            if (wine_by_id.getName() != wineJpaEntity.getName()) {
+                wineJpaEntity.setName(wine.getName());
             } else if (wine_by_id.getDegrees() != wineJpaEntity.getDegrees()) {
                 wineJpaEntity.setDegrees(wine.getDegrees());
             } else if (wine_by_id.getUrl() != wineJpaEntity.getUrl()) {
@@ -48,10 +54,15 @@ public class WinePersistenceAdaptater implements WinePersistencePort {
     }
 
     @Override
-    public List<Wine> getWines() {
+    public List<Wine> getWines(int limit) {
+        Pageable paging = PageRequest.of(0,limit, Sort.by("id"));
+        if(limit > 0) {
+            Page<WineJpaEntity> pagedResult = wineRepository.findAll(paging);
+            return WineMapper.INSTANCE.wineJpaEntityPageToWineList(pagedResult);
+        } else {
         List<WineJpaEntity> wineJpaEntityList = wineRepository.findAll();
-        System.out.println(wineRepository.findAll());
         return WineMapper.INSTANCE.wineJpaEntityListToWineList(wineJpaEntityList);
+        }
     }
 
     @Override
