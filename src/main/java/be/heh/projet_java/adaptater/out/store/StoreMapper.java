@@ -5,6 +5,7 @@ import be.heh.projet_java.model.Store;
 import java.util.ArrayList;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -17,6 +18,8 @@ public interface StoreMapper {
     StoreJpaEntity storeToStoreJpa(Store store);
 
     List<Store> storeJpaListToStoreList(List<StoreJpaEntity> storeJpaEntityList);
+
+    List<Store> storeJpaEntityPageToStoreList(Page<StoreJpaEntity> storeJpaEntityPage);
 
     List<StoreJpaEntity> storeListToStoreJpa(List<Store> storeList);
 

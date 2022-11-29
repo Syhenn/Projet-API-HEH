@@ -29,8 +29,8 @@ public class StoreServiceImpl implements StoreServicePort {
     }
 
     @Override
-    public List<Store> getStores(){
-        return storePersistencePort.getStores();
+    public List<Store> getStores(int limit){
+        return storePersistencePort.getStores(limit);
     }
 
     @Override

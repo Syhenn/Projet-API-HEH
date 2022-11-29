@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RequestMapping("/store")
 public class StoreController {
 
@@ -22,8 +23,8 @@ public class StoreController {
         return storeServicePort.addStore(store);
     }
     @GetMapping()
-    public List<Store> getAllStore() {
-        return storeServicePort.getStores();
+    public List<Store> getAllStore(@RequestParam(defaultValue = "100", required = false) int limit) {
+        return storeServicePort.getStores(limit);
     }
     @GetMapping("/{id}")
     public Store getStoreById(@PathVariable long id){
