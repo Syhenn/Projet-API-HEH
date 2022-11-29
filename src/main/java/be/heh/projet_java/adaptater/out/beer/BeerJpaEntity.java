@@ -19,8 +19,8 @@ public class BeerJpaEntity {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "namebeer")
-    private String nameBeer;
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "url")
     private String url;
