@@ -30,8 +30,8 @@ public class BeerServiceImpl implements BeerServicePort {
     }
 
     @Override
-    public List<Beer> getBeers() {
-        return beerPersistencePort.getBeers();
+    public List<Beer> getBeers(int limit) {
+        return beerPersistencePort.getBeers(limit);
     }
 
     @Override

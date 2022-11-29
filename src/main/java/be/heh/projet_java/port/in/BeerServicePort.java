@@ -8,7 +8,7 @@ public interface BeerServicePort {
   Beer addBeer(Beer beer);
   void deleteBeerById(Long id);
   Beer updateBeer(Long id,Beer beer);
-  List<Beer> getBeers();
+  List<Beer> getBeers(int limit);
   Beer getBeerById(Long beer);
 
 }

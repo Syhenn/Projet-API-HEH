@@ -6,6 +6,11 @@ import be.heh.projet_java.model.Beer;
 import be.heh.projet_java.model.Store;
 import be.heh.projet_java.port.out.BeerPersistencePort;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 import java.util.Optional;
@@ -50,10 +55,15 @@ public class BeerPersistenceAdaptater implements BeerPersistencePort {
     }
 
     @Override
-    public List<Beer> getBeers() {
-        List<BeerJpaEntity> beerJpaEntityList = beerRepository.findAll();
-
-        return BeerMapper.INSTANCE.beerJpaEntityListToBeerList(beerJpaEntityList);
+    public List<Beer> getBeers(int limit) {
+        Pageable paging = PageRequest.of(0,limit, Sort.by("id"));
+        if(limit > 0) {
+            Page<BeerJpaEntity> pagedResult = beerRepository.findAll(paging);
+            return BeerMapper.INSTANCE.beerJpaEntityPageToBeerList(pagedResult);
+        } else {
+            List<BeerJpaEntity> beerJpaEntityList = beerRepository.findAll();
+            return BeerMapper.INSTANCE.beerJpaEntityListToBeerList(beerJpaEntityList);
+        }
     }
 
     @Override
