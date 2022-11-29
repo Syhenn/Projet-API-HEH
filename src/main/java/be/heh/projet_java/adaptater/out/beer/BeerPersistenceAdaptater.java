@@ -41,8 +41,8 @@ public class BeerPersistenceAdaptater implements BeerPersistencePort {
             Beer beer_by_id = BeerMapper.INSTANCE.beerToBeerModel(beerJpa.get());
             BeerJpaEntity beerJpaEntity = BeerMapper.INSTANCE.beerToBeerJpaEntity(beer);
             beerJpaEntity.setId(id);
-            if (beer_by_id.getNameBeer() != beerJpaEntity.getNameBeer()) {
-                beerJpaEntity.setNameBeer(beer.getNameBeer());
+            if (beer_by_id.getName() != beerJpaEntity.getName()) {
+                beerJpaEntity.setName(beer.getName());
             } else if (beer_by_id.getDegrees() != beerJpaEntity.getDegrees()) {
                 beerJpaEntity.setDegrees(beer.getDegrees());
             } else if (beer_by_id.getUrl() != beerJpaEntity.getUrl()) {
