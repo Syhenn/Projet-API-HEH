@@ -30,7 +30,8 @@ public class BeerController {
   }
 
   @GetMapping
-  public List<Beer> getAllBeer() {
+  public List<Beer> getAllBeer(@RequestParam Long limit) {
+    System.out.println(limit);
     return beerServicePort.getBeers();
   }
 
