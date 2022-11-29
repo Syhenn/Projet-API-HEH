@@ -19,8 +19,8 @@ public class WineJpaEntity {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "namewine")
-    private String nameWine;
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "url")
     private String url;

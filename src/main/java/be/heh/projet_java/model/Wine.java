@@ -9,7 +9,7 @@ public class Wine {
 
     private Long id;
 
-    private final String nameWine;
+    private final String name;
 
     private final String url;
 
