@@ -9,6 +9,6 @@ public interface WineServicePort {
     void deleteWineById(Long id);
 
     Wine updateWine(Long id,Wine wine);
-    List<Wine> getWines();
+    List<Wine> getWines(int limit);
     Wine getWineById(Long wine);
 }

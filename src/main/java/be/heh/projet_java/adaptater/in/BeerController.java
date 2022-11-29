@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RequestMapping("/beer")
 public class BeerController {
 
@@ -30,7 +31,7 @@ public class BeerController {
   }
 
   @GetMapping
-  public List<Beer> getAllBeer(@RequestParam int limit) {
+  public List<Beer> getAllBeer(@RequestParam(defaultValue = "100", required = false) int limit) {
     return beerServicePort.getBeers(limit);
   }
 

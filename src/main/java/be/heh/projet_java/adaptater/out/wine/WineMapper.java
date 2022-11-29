@@ -1,11 +1,9 @@
 package be.heh.projet_java.adaptater.out.wine;
 
-import be.heh.projet_java.adaptater.out.beer.BeerJpaEntity;
-import be.heh.projet_java.adaptater.out.beer.BeerMapper;
-import be.heh.projet_java.model.Beer;
 import be.heh.projet_java.model.Wine;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -19,5 +17,6 @@ public interface WineMapper {
 
     List<Wine> wineJpaEntityListToWineList(List<WineJpaEntity> wineJpaEntityList);
 
+    List<Wine> wineJpaEntityPageToWineList(Page<WineJpaEntity> wineJpaEntityPage);
     List<WineJpaEntity> wineListToWineJpaEntityList (List<Wine> wineList);
 }

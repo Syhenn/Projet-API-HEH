@@ -1,5 +1,7 @@
 package be.heh.projet_java.adaptater.out.store;
 
+import be.heh.projet_java.adaptater.out.beer.BeerJpaEntity;
+import be.heh.projet_java.adaptater.out.beer.BeerMapper;
 import be.heh.projet_java.model.Store;
 import be.heh.projet_java.port.out.StorePersistencePort;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,11 @@ import java.util.List;
 import java.util.Optional;
 
 import be.heh.projet_java.adaptater.out.store.StoreJpaEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+
 public class StorePersistenceAdaptater implements StorePersistencePort {
     @Autowired
     private StoreRepository storeRepository;
@@ -46,9 +53,15 @@ public class StorePersistenceAdaptater implements StorePersistencePort {
     }
 
     @Override
-    public List<Store> getStores() {
-        List<StoreJpaEntity> storeList = storeRepository.findAll();
-        return StoreMapper.INSTANCE.storeJpaListToStoreList(storeList);
+    public List<Store> getStores(int limit) {
+        Pageable paging = PageRequest.of(0,limit, Sort.by("id"));
+        if(limit > 0) {
+            Page<StoreJpaEntity> pagedResult = storeRepository.findAll(paging);
+            return StoreMapper.INSTANCE.storeJpaEntityPageToStoreList(pagedResult);
+        } else {
+            List<StoreJpaEntity> storeList = storeRepository.findAll();
+            return StoreMapper.INSTANCE.storeJpaListToStoreList(storeList);
+        }
     }
 
     @Override

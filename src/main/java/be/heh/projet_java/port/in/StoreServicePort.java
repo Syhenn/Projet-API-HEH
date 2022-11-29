@@ -11,7 +11,7 @@ public interface StoreServicePort {
 
     Store updateStore(Long id, Store store);
 
-    List<Store> getStores();
+    List<Store> getStores(int limit);
 
     Store getStoreById(Long storeId);
 

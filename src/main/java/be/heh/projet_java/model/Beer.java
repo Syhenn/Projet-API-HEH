@@ -9,7 +9,7 @@ public class Beer {
 
   private Long id;
 
-  private final String nameBeer;
+  private final String name;
 
   private final String url;
 

@@ -11,14 +11,15 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RequestMapping("/wine")
 public class WineController {
     @Autowired
     private WineServicePort wineServicePort;
 
     @GetMapping
-    public List<Wine> getAllWine() {
-        return wineServicePort.getWines();
+    public List<Wine> getAllWine(@RequestParam(defaultValue = "100", required = false) int limit) {
+        return wineServicePort.getWines(limit);
     }
 
     @GetMapping("/{id}")
