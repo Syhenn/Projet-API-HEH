@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/store")
 public class StoreController {
 
@@ -31,7 +31,7 @@ public class StoreController {
         return storeServicePort.getStoreById(id);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public Store updateStore(@PathVariable long id, @RequestBody Store store) {
 
         return storeServicePort.updateStore(id, store);

@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/wine")
 public class WineController {
     @Autowired
@@ -27,7 +27,7 @@ public class WineController {
         return wineServicePort.getWineById(id);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public Wine updateWine(@PathVariable Long id ,@RequestBody Wine wine) {
         return wineServicePort.updateWine(id, wine);
     }
