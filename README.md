@@ -25,3 +25,8 @@ Outils:
 - Outils de moteur de production (build automation) : Gradle
 
 ## Les commandes pour faire fonctionner
+```
+cd frontend/
+npm i
+npm start
+```
