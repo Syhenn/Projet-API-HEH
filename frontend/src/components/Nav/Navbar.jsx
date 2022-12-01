@@ -1,8 +1,9 @@
 import { Link, useNavigate } from "react-router-dom"
+import { useKeycloak } from "@react-keycloak/web";
 
 export default function Navbar() {
   const navigate = useNavigate();
-  
+  const { keycloak, initialized } = useKeycloak();
 
   const user = JSON.parse(localStorage.getItem('profile'))
 
@@ -22,7 +23,24 @@ export default function Navbar() {
       <Link to="/alcool" className="mr-5 p-2 hover:bg-blue-200 rounded-lg">Alcools</Link>
       <Link to="/store" className="mr-5 p-2 hover:bg-blue-200 rounded-lg">Magasins</Link>
       {/* {authState?.isAuthenticated ? <button onClick={logout}>Logout</button> : <button onClick={login}>Login</button>} */}
-
+      {!keycloak.authenticated && (
+                   <button
+                     type="button"
+                     className="text-blue-800"
+                     onClick={() => keycloak.login()}
+                   >
+                     Login
+                   </button>
+                 )}
+                       {!!keycloak.authenticated && (
+                   <button
+                     type="button"
+                     className="text-blue-800"
+                     onClick={() => keycloak.logout()}
+                   >
+                     Logout ({keycloak.tokenParsed.preferred_username})
+                   </button>
+                 )}
       {/* {user && <p onClick={handleClick} className="py-2 px-3 bg-blue-500 rounded-full text-white font-bold hover:bg-blue-400 inline cursor-pointer">Logout</p>} */}
       
     </div>

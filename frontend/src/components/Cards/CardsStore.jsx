@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
+import { useKeycloak } from "@react-keycloak/web";
 
 export default function CardsStore(props) {
+  const { keycloak, initialized } = useKeycloak();
   const config = axios.create({baseURL : "http://localhost:8080"})
   config.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
   config.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
@@ -43,8 +45,12 @@ export default function CardsStore(props) {
         </p>
       </div>
       <div>
+      {keycloak.hasRealmRole("admin") && (
+        <>
         <p onClick={supp} id={props.id} className="rounded-full px-3 text-white cursor-pointer py-1 m-4 bg-red-500 ">-</p>
         <p onClick={()=> setIsModify(true)} id={props.id} className="rounded-full px-3 text-white cursor-pointer py-1 m-4 bg-orange-500 ">x</p>
+        </>)
+      }
       </div>
     </div>
     : 

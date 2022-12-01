@@ -1,22 +1,28 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Alcool from "./pages/Alcool/Alcool";
-import Error404 from "./pages/Error404/Error404";
-import Home from "./pages/Home/Home";
+import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-router-dom";
+import { ReactKeycloakProvider } from "@react-keycloak/web";
+import Secured from "./pages/Secured/Secured";
+import PrivateRoute from "./pages/Secured/PrivateRoute";
+import keycloak from "./keycloak";
+import Navbar from "./components/Nav/Navbar";
 import Login from "./pages/Login/Login";
-import Store from "./pages/Store/Store";
-
 function App() {
   return (
     <div className="bg-slate-100">
+      <ReactKeycloakProvider authClient={keycloak}>
+         <Login />
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/alcool" element={<Alcool />} />
-          <Route path="/store" element={<Store />} />
-          <Route path="*" element={<Error404 />} />
+        <Route
+             path="*"
+             element={
+               <PrivateRoute>
+                 <Secured />
+               </PrivateRoute>
+             }
+           />
         </Routes>
       </Router>
+      </ReactKeycloakProvider>
     </div>
   );
 }
