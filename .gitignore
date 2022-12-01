@@ -17,10 +17,10 @@ backend/bin/
 !backend/**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
-backend/.idea
-backend/*.iws
-backend/*.iml
-backend/*.ipr
+.idea
+*.iws
+*.iml
+*.ipr
 backend/out/
 !backend/**/src/main/**/out/
 !backend/**/src/test/**/out/
