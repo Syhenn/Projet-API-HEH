@@ -1,9 +1,11 @@
 import axios from "axios"
 import { useState } from "react"
+import { useKeycloak } from "@react-keycloak/web";
 
 export default function CardsAlcool(props) {
-  const [isModify, setIsModify] = useState(false)
 
+  const { keycloak, initialized } = useKeycloak();
+  const [isModify, setIsModify] = useState(false)
   const config = axios.create({baseURL : "http://localhost:8080"})
   function supp(e) {
     const id = e.target.id
@@ -26,7 +28,7 @@ export default function CardsAlcool(props) {
     config.put(`/${props.type}/${id}`, form).then((sucess)=> {
       setIsModify(false)
     })
-
+  
   }
   return( 
     <>
@@ -54,9 +56,12 @@ export default function CardsAlcool(props) {
             </div>
             <p className="text-sm font-medium text-gray-900  hover:no-underline">10 reviews</p>
         </div>
-
-        <p onClick={supp} id={props.id} className="absolute top-0 right-0 rounded-full px-3 text-white cursor-pointer py-1 m-1 bg-red-500 ">-</p>
-        <p onClick={()=> setIsModify(true)} id={props.id} className=" absolute top-0 rounded-full px-3 text-white cursor-pointer py-1 m-1 bg-orange-500 ">x</p>
+        {keycloak.hasRealmRole("admin") && (
+          <>
+          <p onClick={supp} id={props.id} className="absolute top-0 right-0 rounded-full px-3 text-white cursor-pointer py-1 m-1 bg-red-500 ">-</p>
+          <p onClick={()=> setIsModify(true)} id={props.id} className=" absolute top-0 rounded-full px-3 text-white cursor-pointer py-1 m-1 bg-orange-500 ">x</p>
+          </>)
+        }
       </div>
     :
 
