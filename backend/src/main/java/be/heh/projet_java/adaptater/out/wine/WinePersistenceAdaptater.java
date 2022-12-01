@@ -8,6 +8,8 @@ import be.heh.projet_java.adaptater.out.store.StoreMapper;
 import be.heh.projet_java.model.Beer;
 import be.heh.projet_java.model.Wine;
 import be.heh.projet_java.port.out.WinePersistencePort;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,6 +19,8 @@ import org.springframework.data.domain.Sort;
 import java.util.List;
 import java.util.Optional;
 
+@AllArgsConstructor
+@NoArgsConstructor
 public class WinePersistenceAdaptater implements WinePersistencePort {
     @Autowired
     private WineRepository wineRepository;

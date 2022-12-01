@@ -5,6 +5,8 @@ import be.heh.projet_java.adaptater.out.store.StoreMapper;
 import be.heh.projet_java.model.Beer;
 import be.heh.projet_java.model.Store;
 import be.heh.projet_java.port.out.BeerPersistencePort;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 import org.springframework.data.domain.Page;
@@ -15,6 +17,8 @@ import org.springframework.data.domain.Sort;
 import java.util.List;
 import java.util.Optional;
 
+@AllArgsConstructor
+@NoArgsConstructor
 public class BeerPersistenceAdaptater implements BeerPersistencePort {
 
     @Autowired

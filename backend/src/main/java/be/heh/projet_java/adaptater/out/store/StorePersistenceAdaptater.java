@@ -4,6 +4,8 @@ import be.heh.projet_java.adaptater.out.beer.BeerJpaEntity;
 import be.heh.projet_java.adaptater.out.beer.BeerMapper;
 import be.heh.projet_java.model.Store;
 import be.heh.projet_java.port.out.StorePersistencePort;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -15,6 +17,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+@AllArgsConstructor
+@NoArgsConstructor
 public class StorePersistenceAdaptater implements StorePersistencePort {
     @Autowired
     private StoreRepository storeRepository;
