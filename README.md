@@ -10,16 +10,18 @@ Pour la partie frontend, nous avons utilisé du JavaScript avec la librairies RE
 BDD : PostgresSQL
 
 Architecture :
-o Adaptateur Web : Contrôleur MVC (Spring Boot)
-o Adaptateur de persistance : utilisation de l’ORM JPA (Spring Data JPA)
-o Assemblage de l’application : injection de dépendance (@Configuration)
+- Adaptateur Web : Contrôleur MVC (Spring Boot)
+- Adaptateur de persistance : utilisation de l’ORM JPA (Spring Data JPA)
+- Assemblage de l’application : injection de dépendance (@Configuration)
 
 Tests:
-o Utilisation de la bibliothèque JUnit pour les tests unitaires
-o Utilisation la bibliothèque “mockMvc” pour tester les contrôleurs MVC
-o Utilisation de Stub (bibliothèque Mockito)
-o Utilisation Testcontainers (Conteneur Docker PostgreSQL)
+- Utilisation de la bibliothèque JUnit pour les tests unitaires
+- Utilisation la bibliothèque “mockMvc” pour tester les contrôleurs MVC
+- Utilisation de Stub (bibliothèque Mockito)
+- Utilisation Testcontainers (Conteneur Docker PostgreSQL)
 
 Outils:
-o Améliorer la lisibilité (Lombok)
-o Outils de moteur de production (build automation) : Gradle
+- Améliorer la lisibilité (Lombok)
+- Outils de moteur de production (build automation) : Gradle
+
+## Les commandes pour faire fonctionner
