@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useState } from "react";
 import CardsStore from "./CardsStore";
-
+import { useKeycloak } from "@react-keycloak/web";
 
 export default function StoreGroup(props) {
   const config = axios.create({baseURL : "http://localhost:8080"})
   const store = props.data;
   const [isAdd, setIsAdd] = useState(false);
+  const { keycloak, initialized } = useKeycloak();
 
   function handleSubmit(e) {
 
@@ -26,7 +27,12 @@ export default function StoreGroup(props) {
     <div className="max-w-5xl mx-auto mt-10">
       <div className="flex justify-between">
         <h2 className="font-bold text-blue-600 text-2xl">{props.name}</h2>
-        <p onClick={()=> setIsAdd(true)} className="ml-5 py-1 px-3 rounded-full bg-blue-400 block text-xl cursor-pointer">+</p>
+        {keycloak.hasRealmRole("admin") &&(
+          <>
+            <p onClick={()=> setIsAdd(true)} className="ml-5 py-1 px-3 rounded-full bg-blue-400 block text-xl cursor-pointer">+</p>
+          </>
+        )
+        }
       </div>
       <div className="flex flex-col gap-5 mt-5 ml-5 flex-wrap">
         {isAdd && 
