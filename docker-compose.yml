@@ -1,0 +1,50 @@
+version: '3'
+
+services:
+  #Create frontend container
+  frontend:
+    build: ./frontend
+    ports:
+      - 3000:3000
+    container_name: frontend-docker-heh
+    restart: always
+    links:
+      - backend
+  
+  backend:
+    build: ./backend
+    ports:
+      - "8080:8080"
+    container_name: backend-container-heh
+    restart: always
+    links:
+      - db-postgres
+    networks:
+      - default
+
+  db-postgres:
+    image: postgres:14.2-alpine
+    restart: always
+    container_name: db-postgres
+    environment:
+      - POSTGRES_DB=projet
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=test123
+    ports:
+      - '5432:5432'
+    volumes: 
+      - /var/lib/postgresql/data
+
+  keycloak:
+    container_name: keyloak-heh
+    image: quay.io/keycloak/keycloak:15.0.2
+    ports:
+      - '8081:8080'
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+
+    
+networks:
+  bridge:
+    external: true
