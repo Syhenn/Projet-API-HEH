@@ -2,9 +2,8 @@
 Avec une architecture hexagonale, réalisé par Sylvain HENQUIN et [Colin DEPELSENAIRE](https://github.com/cocoricodai)
 
 ## Introduction
-Dans le cadre de notre cours de programmation résau Java, il nous fallait réaliser une application web en java.
-Nous avons décidé de réaliser seulement le backend en Java, en faisant sur une API rest.
-Pour la partie frontend, nous avons utilisé du JavaScript avec la librairies REACT.JS
+Dans le cadre de notre projet, nous avons développé une application web en utilisant Java pour le backend, avec l'aide de frameworks tels que Spring Boot et JPA pour la gestion de la persistance des données. Nous avons construit une API pour gérer les requêtes HTTP entrantes et transmettre les réponses appropriées aux clients. Pour effectuer des tests sur notre application nous avons utilisé JUnit, MockMvc et Mockito.
+Côté Frontend, nous avons utilisé JavaScript et le framework ReactJS pour construire une interface utilisateur interactive et réactive qui communique avec l'API Java pour afficher les données et réaliser des actions. En somme, notre application utilise une architecture basée sur une combinaison de Java pour le Backend et ReactJS pour le Frontend.
 
 ## Les conditions imposées
 BDD : PostgresSQL
@@ -24,9 +23,17 @@ Outils:
 - Améliorer la lisibilité (Lombok)
 - Outils de moteur de production (build automation) : Gradle
 
-## Les commandes pour faire fonctionner
+## Commande avec Docker
 ```
-cd frontend/
-npm i
-npm start
+docker-compose up --build
 ```
+
+## Configuration du KeyCloack
+1. Aller sur : localhost:8081
+2. Se connecter avec les identifiants suivants -> login : admin, password : admin
+3. Création d'un Realm sous le nom de "Projet API" 
+4. Création d'un client au nom de frontendReact.
+5. Création de deux rôles : "admin" et "user"
+6. Activer User Registration
+
+
